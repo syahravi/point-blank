@@ -53,11 +53,20 @@ class Weapons:
                     'name': 'update_id',
                     'message': 'Plus Ultra',
                     'choices': name,
-                    'filter': lambda val: val[0]
+                    'filter': lambda val: int(val[0])
                     }
                 ]
         ans1 = prompt(update_name)
         ans2 = prompt(self.update_weapon)
+        if ans2.get("update")[7:] == "Points":
+            x = ans1.get('update_id') - 1
+            name = records[x][0]
+            desc = records[x][1]
+            point = records[x][2]
+            rank = records[x][3]
+            print(name, desc, point, rank)
+        else:
+            pass
         self.update(ans1.get('update_id'), ans2.get("update")[7:])
 
     def update(self, i, where):
